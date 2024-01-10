@@ -57,7 +57,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[57.589486720155755,-3.786661119862855],[57.801213743754666,-3.3396755756334606]]);
+        }).fitBounds([[57.277159970581415,-4.7679793336147265],[58.12390354866092,-2.98003715669715]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -2986,7 +2986,6 @@
             sel_SPECIES.id = "sel_SPECIES";
             var SPECIES_options_str = "<option value='' unselected></option>";
             sel_SPECIES.onchange = function(){filterFunc()};
-            SPECIES_options_str  += '<option value="BN">BN</option>';
             SPECIES_options_str  += '<option value="BND">BND</option>';
             SPECIES_options_str  += '<option value="BS">BS</option>';
             SPECIES_options_str  += '<option value="CD">CD</option>';
