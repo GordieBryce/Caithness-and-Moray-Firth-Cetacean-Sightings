@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/filter.css">
 <link rel="stylesheet" href="css/nouislider.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         html, body, #map {
@@ -33,6 +34,7 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="js/tailDT.js"></script>
 <script src="js/nouislider.min.js"></script>
@@ -49,6 +51,7 @@
         <script src="data/OCTOBER2023_10.js"></script>
         <script src="data/NOVEMBER2023_11.js"></script>
         <script src="data/DECEMBER2023_12.js"></script>
+        <script src="data/JANUARY2024_13.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -57,10 +60,23 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[57.277159970581415,-4.7679793336147265],[58.12390354866092,-2.98003715669715]]);
+        }).fitBounds([[57.45936970343501,-4.4699896656451426],[58.0742252005772,-2.463952428144708]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        function removeEmptyRowsFromPopupContent(content, feature) {
+         var tempDiv = document.createElement('div');
+         tempDiv.innerHTML = content;
+         var rows = tempDiv.querySelectorAll('tr');
+         for (var i = 0; i < rows.length; i++) {
+             var td = rows[i].querySelector('td.visible-with-data');
+             var key = td ? td.id : '';
+             if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
+                 rows[i].parentNode.removeChild(rows[i]);
+             }
+         }
+         return tempDiv.innerHTML;
+        }
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
@@ -111,10 +127,14 @@
                         <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_JANUARY2023_1_0(feature) {
@@ -221,7 +241,7 @@
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
-                dashArray: '10,5',
+                dashArray: '10.0,2.0',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
@@ -364,7 +384,6 @@
             },
         });
         bounds_group.addLayer(layer_JANUARY2023_1);
-        map.addLayer(layer_JANUARY2023_1);
         function pop_FEBRUARY2023_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -386,10 +405,14 @@
                         <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_FEBRUARY2023_2_0(feature) {
@@ -496,7 +519,7 @@
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
-                dashArray: '10,5',
+                dashArray: '10.0,2.0',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
@@ -639,7 +662,6 @@
             },
         });
         bounds_group.addLayer(layer_FEBRUARY2023_2);
-        map.addLayer(layer_FEBRUARY2023_2);
         function pop_MARCH2023_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -661,10 +683,14 @@
                         <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_MARCH2023_3_0(feature) {
@@ -771,7 +797,7 @@
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
-                dashArray: '10,5',
+                dashArray: '10.0,2.0',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
@@ -914,7 +940,6 @@
             },
         });
         bounds_group.addLayer(layer_MARCH2023_3);
-        map.addLayer(layer_MARCH2023_3);
         function pop_APRIL2023_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -936,10 +961,14 @@
                         <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_APRIL2023_4_0(feature) {
@@ -1046,7 +1075,7 @@
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
-                dashArray: '10,5',
+                dashArray: '10.0,2.0',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
@@ -1189,7 +1218,6 @@
             },
         });
         bounds_group.addLayer(layer_APRIL2023_4);
-        map.addLayer(layer_APRIL2023_4);
         function pop_MAY2023_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -1211,10 +1239,14 @@
                         <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_MAY2023_5_0(feature) {
@@ -1321,7 +1353,7 @@
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
-                dashArray: '10,5',
+                dashArray: '10.0,2.0',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
@@ -1464,7 +1496,6 @@
             },
         });
         bounds_group.addLayer(layer_MAY2023_5);
-        map.addLayer(layer_MAY2023_5);
         function pop_JUNE2023_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -1486,10 +1517,14 @@
                         <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_JUNE2023_6_0(feature) {
@@ -1596,7 +1631,7 @@
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
-                dashArray: '10,5',
+                dashArray: '10.0,2.0',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
@@ -1739,7 +1774,6 @@
             },
         });
         bounds_group.addLayer(layer_JUNE2023_6);
-        map.addLayer(layer_JUNE2023_6);
         function pop_JULY2023_7(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -1761,10 +1795,14 @@
                         <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_JULY2023_7_0(feature) {
@@ -1871,7 +1909,7 @@
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
-                dashArray: '10,5',
+                dashArray: '10.0,2.0',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
@@ -2014,7 +2052,6 @@
             },
         });
         bounds_group.addLayer(layer_JULY2023_7);
-        map.addLayer(layer_JULY2023_7);
         function pop_AUGUST2023_8(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -2033,13 +2070,17 @@
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>DATE</strong><br />' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_AUGUST2023_8_0(feature) {
@@ -2209,7 +2250,6 @@
             },
         });
         bounds_group.addLayer(layer_AUGUST2023_8);
-        map.addLayer(layer_AUGUST2023_8);
         function pop_SEPTEMBER2023_9(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -2228,13 +2268,17 @@
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>DATE</strong><br />' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_SEPTEMBER2023_9_0(feature) {
@@ -2388,7 +2432,6 @@
             },
         });
         bounds_group.addLayer(layer_SEPTEMBER2023_9);
-        map.addLayer(layer_SEPTEMBER2023_9);
         function pop_OCTOBER2023_10(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -2407,13 +2450,17 @@
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>DATE</strong><br />' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_OCTOBER2023_10_0(feature) {
@@ -2583,7 +2630,6 @@
             },
         });
         bounds_group.addLayer(layer_OCTOBER2023_10);
-        map.addLayer(layer_OCTOBER2023_10);
         function pop_NOVEMBER2023_11(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -2602,13 +2648,17 @@
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>DATE</strong><br />' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_NOVEMBER2023_11_0(feature) {
@@ -2730,7 +2780,6 @@
             },
         });
         bounds_group.addLayer(layer_NOVEMBER2023_11);
-        map.addLayer(layer_NOVEMBER2023_11);
         function pop_DECEMBER2023_12(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -2749,13 +2798,17 @@
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>DATE</strong><br />' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>SPECIES</strong><br />' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
         }
 
         function style_DECEMBER2023_12_0(feature) {
@@ -2830,7 +2883,7 @@
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
-                dashArray: '10,5',
+                dashArray: '10.0,2.0',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
@@ -2861,9 +2914,297 @@
             },
         });
         bounds_group.addLayer(layer_DECEMBER2023_12);
-        map.addLayer(layer_DECEMBER2023_12);
+        function pop_JANUARY2024_13(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
+        }
+
+        function style_JANUARY2024_13_0(feature) {
+            switch(String(feature.properties['SPECIES'])) {
+                case 'BND':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(9,9,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CD':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,224,44,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HP':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(22,222,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HW':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,94,177,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'MW':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'RD':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'KW':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '10.0,2.0',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'FW':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,113,72,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PW':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,72,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'WBD':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(117,58,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,255,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'NBW':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(91,38,48,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'UIDW':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(83,83,83,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'UIDD':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(83,83,83,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,203,203,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BS':
+                    return {
+                pane: 'pane_JANUARY2024_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,128,0,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_JANUARY2024_13');
+        map.getPane('pane_JANUARY2024_13').style.zIndex = 413;
+        map.getPane('pane_JANUARY2024_13').style['mix-blend-mode'] = 'normal';
+        var layer_JANUARY2024_13 = new L.geoJson(json_JANUARY2024_13, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_JANUARY2024_13',
+            layerName: 'layer_JANUARY2024_13',
+            pane: 'pane_JANUARY2024_13',
+            onEachFeature: pop_JANUARY2024_13,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_JANUARY2024_13_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_JANUARY2024_13);
+        map.addLayer(layer_JANUARY2024_13);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'DECEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_KILLERWHALE4.png" /></td><td>KILLER WHALE</td></tr></table>': layer_DECEMBER2023_12,'NOVEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr></table>': layer_NOVEMBER2023_11,'OCTOBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_FINWHALE6.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>': layer_OCTOBER2023_10,'SEPTEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_UNIDENTIFIEDDOLPHINSPP6.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_BASKINGSHARK7.png" /></td><td>BASKING SHARK</td></tr></table>': layer_SEPTEMBER2023_9,'AUGUST 2023<br /><table><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_UNIDENTIFIEDWHALESPP6.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_UNIDENTIFIEDDOLPHINSPP7.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>': layer_AUGUST2023_8,'JULY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JULY2023_7_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JULY2023_7,'JUNE 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JUNE2023_6,'MAY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MAY2023_5_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_MAY2023_5,'APRIL 2023<br /><table><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_APRIL2023_4,'MARCH 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_MARCH2023_3,'FEBRUARY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_FEBRUARY2023_2,'JANUARY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JANUARY2023_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'JANUARY 2024<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JANUARY2024_13,'DECEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_KILLERWHALE4.png" /></td><td>KILLER WHALE</td></tr></table>': layer_DECEMBER2023_12,'NOVEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr></table>': layer_NOVEMBER2023_11,'OCTOBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_FINWHALE6.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>': layer_OCTOBER2023_10,'SEPTEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_UNIDENTIFIEDDOLPHINSPP6.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_BASKINGSHARK7.png" /></td><td>BASKING SHARK</td></tr></table>': layer_SEPTEMBER2023_9,'AUGUST 2023<br /><table><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_UNIDENTIFIEDWHALESPP6.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_UNIDENTIFIEDDOLPHINSPP7.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>': layer_AUGUST2023_8,'JULY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JULY2023_7_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JULY2023_7,'JUNE 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JUNE2023_6,'MAY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MAY2023_5_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_MAY2023_5,'APRIL 2023<br /><table><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_APRIL2023_4,'MARCH 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_MARCH2023_3,'FEBRUARY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_FEBRUARY2023_2,'JANUARY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JANUARY2023_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
         setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
