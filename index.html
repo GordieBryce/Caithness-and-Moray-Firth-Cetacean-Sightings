@@ -8,6 +8,8 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         html, body, #map {
@@ -32,6 +34,9 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-measure.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
         <script src="data/JANUARY2023_1.js"></script>
         <script src="data/FEBRUARY2023_2.js"></script>
         <script src="data/MARCH2023_3.js"></script>
@@ -53,7 +58,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[56.78781990801637,-4.8401884439400416],[59.93011150849713,5.591205191054582]]);
+        }).fitBounds([[55.803893398886565,-8.544661338404755],[59.02963740863659,1.8867322965898694]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -148,70 +153,6 @@
                 interactive: true,
             }
                     break;
-                case 'CD':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(227,224,44,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'HP':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(50,87,128,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(22,222,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'HW':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,94,177,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'MW':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(128,17,25,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(219,30,42,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'RD':
                     return {
                 pane: 'pane_JANUARY2023_1',
@@ -244,70 +185,6 @@
                 interactive: true,
             }
                     break;
-                case 'FW':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(231,113,72,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'PW':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,72,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'WBD':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(117,58,128,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,255,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'NBW':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(91,38,48,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'UIDW':
                     return {
                 pane: 'pane_JANUARY2023_1',
@@ -337,22 +214,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(203,203,203,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'BS':
-                    return {
-                pane: 'pane_JANUARY2023_1',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,128,0,1.0)',
                 interactive: true,
             }
                     break;
@@ -426,22 +287,6 @@
                 interactive: true,
             }
                     break;
-                case 'CD':
-                    return {
-                pane: 'pane_FEBRUARY2023_2',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(227,224,44,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'HP':
                     return {
                 pane: 'pane_FEBRUARY2023_2',
@@ -455,38 +300,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(22,222,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'HW':
-                    return {
-                pane: 'pane_FEBRUARY2023_2',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,94,177,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'MW':
-                    return {
-                pane: 'pane_FEBRUARY2023_2',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(128,17,25,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(219,30,42,1.0)',
                 interactive: true,
             }
                     break;
@@ -522,70 +335,6 @@
                 interactive: true,
             }
                     break;
-                case 'FW':
-                    return {
-                pane: 'pane_FEBRUARY2023_2',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(231,113,72,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'PW':
-                    return {
-                pane: 'pane_FEBRUARY2023_2',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,72,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'WBD':
-                    return {
-                pane: 'pane_FEBRUARY2023_2',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(117,58,128,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,255,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'NBW':
-                    return {
-                pane: 'pane_FEBRUARY2023_2',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(91,38,48,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'UIDW':
                     return {
                 pane: 'pane_FEBRUARY2023_2',
@@ -615,22 +364,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(203,203,203,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'BS':
-                    return {
-                pane: 'pane_FEBRUARY2023_2',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,128,0,1.0)',
                 interactive: true,
             }
                     break;
@@ -704,22 +437,6 @@
                 interactive: true,
             }
                     break;
-                case 'CD':
-                    return {
-                pane: 'pane_MARCH2023_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(227,224,44,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'HP':
                     return {
                 pane: 'pane_MARCH2023_3',
@@ -749,22 +466,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(255,94,177,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'MW':
-                    return {
-                pane: 'pane_MARCH2023_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(128,17,25,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(219,30,42,1.0)',
                 interactive: true,
             }
                     break;
@@ -800,86 +501,6 @@
                 interactive: true,
             }
                     break;
-                case 'FW':
-                    return {
-                pane: 'pane_MARCH2023_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(231,113,72,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'PW':
-                    return {
-                pane: 'pane_MARCH2023_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,72,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'WBD':
-                    return {
-                pane: 'pane_MARCH2023_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(117,58,128,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,255,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'NBW':
-                    return {
-                pane: 'pane_MARCH2023_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(91,38,48,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'UIDW':
-                    return {
-                pane: 'pane_MARCH2023_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(247,247,247,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(83,83,83,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'UIDD':
                     return {
                 pane: 'pane_MARCH2023_3',
@@ -893,22 +514,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(203,203,203,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'BS':
-                    return {
-                pane: 'pane_MARCH2023_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,128,0,1.0)',
                 interactive: true,
             }
                     break;
@@ -1014,22 +619,6 @@
                 interactive: true,
             }
                     break;
-                case 'HW':
-                    return {
-                pane: 'pane_APRIL2023_4',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,94,177,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'MW':
                     return {
                 pane: 'pane_APRIL2023_4',
@@ -1078,70 +667,6 @@
                 interactive: true,
             }
                     break;
-                case 'FW':
-                    return {
-                pane: 'pane_APRIL2023_4',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(231,113,72,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'PW':
-                    return {
-                pane: 'pane_APRIL2023_4',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,72,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'WBD':
-                    return {
-                pane: 'pane_APRIL2023_4',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(117,58,128,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,255,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'NBW':
-                    return {
-                pane: 'pane_APRIL2023_4',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(91,38,48,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'UIDW':
                     return {
                 pane: 'pane_APRIL2023_4',
@@ -1171,22 +696,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(203,203,203,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'BS':
-                    return {
-                pane: 'pane_APRIL2023_4',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,128,0,1.0)',
                 interactive: true,
             }
                     break;
@@ -1257,22 +766,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(9,9,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'CD':
-                    return {
-                pane: 'pane_MAY2023_5',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(227,224,44,1.0)',
                 interactive: true,
             }
                     break;
@@ -1372,54 +865,6 @@
                 interactive: true,
             }
                     break;
-                case 'PW':
-                    return {
-                pane: 'pane_MAY2023_5',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,72,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'WBD':
-                    return {
-                pane: 'pane_MAY2023_5',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(117,58,128,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,255,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'NBW':
-                    return {
-                pane: 'pane_MAY2023_5',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(91,38,48,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'UIDW':
                     return {
                 pane: 'pane_MAY2023_5',
@@ -1449,22 +894,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(203,203,203,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'BS':
-                    return {
-                pane: 'pane_MAY2023_5',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,128,0,1.0)',
                 interactive: true,
             }
                     break;
@@ -1634,38 +1063,6 @@
                 interactive: true,
             }
                     break;
-                case 'FW':
-                    return {
-                pane: 'pane_JUNE2023_6',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(231,113,72,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'PW':
-                    return {
-                pane: 'pane_JUNE2023_6',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,72,255,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'WBD':
                     return {
                 pane: 'pane_JUNE2023_6',
@@ -1679,22 +1076,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(0,255,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'NBW':
-                    return {
-                pane: 'pane_JUNE2023_6',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(91,38,48,1.0)',
                 interactive: true,
             }
                     break;
@@ -1727,22 +1108,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(203,203,203,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'BS':
-                    return {
-                pane: 'pane_JUNE2023_6',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,128,0,1.0)',
                 interactive: true,
             }
                     break;
@@ -1848,22 +1213,6 @@
                 interactive: true,
             }
                     break;
-                case 'HW':
-                    return {
-                pane: 'pane_JULY2023_7',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,94,177,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'MW':
                     return {
                 pane: 'pane_JULY2023_7',
@@ -1909,38 +1258,6 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(0,0,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'FW':
-                    return {
-                pane: 'pane_JULY2023_7',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(231,113,72,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'PW':
-                    return {
-                pane: 'pane_JULY2023_7',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,72,255,1.0)',
                 interactive: true,
             }
                     break;
@@ -3059,8 +2376,159 @@
         bounds_group.addLayer(layer_JANUARY2024_13);
         map.addLayer(layer_JANUARY2024_13);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'JANUARY 2024<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_RISSOSDOLPHIN4.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_KILLERWHALE5.png" /></td><td>KILLER WHALE</td></tr></table>': layer_JANUARY2024_13,'DECEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_KILLERWHALE4.png" /></td><td>KILLER WHALE</td></tr></table>': layer_DECEMBER2023_12,'NOVEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr></table>': layer_NOVEMBER2023_11,'OCTOBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_FINWHALE6.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>': layer_OCTOBER2023_10,'SEPTEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_UNIDENTIFIEDDOLPHINSPP6.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_BASKINGSHARK7.png" /></td><td>BASKING SHARK</td></tr></table>': layer_SEPTEMBER2023_9,'AUGUST 2023<br /><table><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_UNIDENTIFIEDWHALESPP6.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_UNIDENTIFIEDDOLPHINSPP7.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>': layer_AUGUST2023_8,'JULY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JULY2023_7_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JULY2023_7,'JUNE 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JUNE2023_6,'MAY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MAY2023_5_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_MAY2023_5,'APRIL 2023<br /><table><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_APRIL2023_4,'MARCH 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_MARCH2023_3,'FEBRUARY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_FEBRUARY2023_2,'JANUARY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JANUARY2023_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'JANUARY 2024<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_RISSOSDOLPHIN4.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_KILLERWHALE5.png" /></td><td>KILLER WHALE</td></tr></table>': layer_JANUARY2024_13,'DECEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_KILLERWHALE4.png" /></td><td>KILLER WHALE</td></tr></table>': layer_DECEMBER2023_12,'NOVEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2023_11_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr></table>': layer_NOVEMBER2023_11,'OCTOBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_FINWHALE6.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2023_10_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>': layer_OCTOBER2023_10,'SEPTEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_UNIDENTIFIEDDOLPHINSPP6.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/SEPTEMBER2023_9_BASKINGSHARK7.png" /></td><td>BASKING SHARK</td></tr></table>': layer_SEPTEMBER2023_9,'AUGUST 2023<br /><table><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_UNIDENTIFIEDWHALESPP6.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_UNIDENTIFIEDDOLPHINSPP7.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/AUGUST2023_8_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>': layer_AUGUST2023_8,'JULY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JULY2023_7_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_MINKEWHALE3.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_RISSOSDOLPHIN4.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_KILLERWHALE5.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_WHITEBEAKEDDOLPHIN6.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_NORTHERNBOTTLENOSEWHALE7.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_UNIDENTIFIEDWHALESPP8.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_UNIDENTIFIEDDOLPHINSPP9.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JULY2023_7_BASKINGSHARK10.png" /></td><td>BASKING SHARK</td></tr></table>': layer_JULY2023_7,'JUNE 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_WHITEBEAKEDDOLPHIN7.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_UNIDENTIFIEDWHALESPP8.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JUNE2023_6_UNIDENTIFIEDDOLPHINSPP9.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>': layer_JUNE2023_6,'MAY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MAY2023_5_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_HARBOURPORPOISE1.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_HUMPBACKWHALE2.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_MINKEWHALE3.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_RISSOSDOLPHIN4.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_KILLERWHALE5.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_FINWHALE6.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/MAY2023_5_UNIDENTIFIEDDOLPHINSPP8.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>': layer_MAY2023_5,'APRIL 2023<br /><table><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_MINKEWHALE3.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_RISSOSDOLPHIN4.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_KILLERWHALE5.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_UNIDENTIFIEDWHALESPP6.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2023_4_UNIDENTIFIEDDOLPHINSPP7.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>': layer_APRIL2023_4,'MARCH 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_HARBOURPORPOISE1.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_HUMPBACKWHALE2.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_RISSOSDOLPHIN3.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_KILLERWHALE4.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_3_UNIDENTIFIEDDOLPHINSPP5.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>': layer_MARCH2023_3,'FEBRUARY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_HARBOURPORPOISE1.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_RISSOSDOLPHIN2.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_KILLERWHALE3.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_UNIDENTIFIEDWHALESPP4.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2023_2_UNIDENTIFIEDDOLPHINSPP5.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>': layer_FEBRUARY2023_2,'JANUARY 2023<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_RISSOSDOLPHIN1.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_KILLERWHALE2.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_UNIDENTIFIEDWHALESPP3.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2023_1_UNIDENTIFIEDDOLPHINSPP4.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>': layer_JANUARY2023_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
         setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"SPECIES": "str"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_SPECIES = document.createElement('div');
+            div_SPECIES.id = "div_SPECIES";
+            div_SPECIES.className= "filterselect";
+            document.getElementById("menu").appendChild(div_SPECIES);
+            sel_SPECIES = document.createElement('select');
+            sel_SPECIES.multiple = true;
+            sel_SPECIES.size = 10;
+            sel_SPECIES.id = "sel_SPECIES";
+            var SPECIES_options_str = "<option value='' unselected></option>";
+            sel_SPECIES.onchange = function(){filterFunc()};
+            SPECIES_options_str  += '<option value="BND">BND</option>';
+            SPECIES_options_str  += '<option value="BS">BS</option>';
+            SPECIES_options_str  += '<option value="CD">CD</option>';
+            SPECIES_options_str  += '<option value="FW">FW</option>';
+            SPECIES_options_str  += '<option value="HP">HP</option>';
+            SPECIES_options_str  += '<option value="HW">HW</option>';
+            SPECIES_options_str  += '<option value="KW">KW</option>';
+            SPECIES_options_str  += '<option value="MW">MW</option>';
+            SPECIES_options_str  += '<option value="NBW">NBW</option>';
+            SPECIES_options_str  += '<option value="RD">RD</option>';
+            SPECIES_options_str  += '<option value="UIDD">UIDD</option>';
+            SPECIES_options_str  += '<option value="UIDW">UIDW</option>';
+            SPECIES_options_str  += '<option value="WBD">WBD</option>';
+            sel_SPECIES.innerHTML = SPECIES_options_str;
+            div_SPECIES.appendChild(sel_SPECIES);
+            var lab_SPECIES = document.createElement('div');
+            lab_SPECIES.innerHTML = 'SPECIES';
+            lab_SPECIES.className = 'filterlabel';
+            div_SPECIES.appendChild(lab_SPECIES);
+            var reset_SPECIES = document.createElement('div');
+            reset_SPECIES.innerHTML = 'clear filter';
+            reset_SPECIES.className = 'filterlabel';
+            reset_SPECIES.onclick = function() {
+                var options = document.getElementById("sel_SPECIES").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_SPECIES.appendChild(reset_SPECIES);
         </script>
     </body>
 </html>
