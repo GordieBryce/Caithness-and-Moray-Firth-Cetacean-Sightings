@@ -56,7 +56,7 @@
         <script src="data/DECEMBER2023_12.js"></script>
         <script src="data/JANUARY2024_13.js"></script>
         <script src="data/FEBRUARY2024_14.js"></script>
-        <script src="data/MARCH2023_15.js"></script>
+        <script src="data/MARCH2024_15.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -65,7 +65,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[57.26745791237454,-7.157388076464552],[59.69405086427333,1.3906501666137618]]);
+        }).fitBounds([[56.44191200864709,-9.473756279614921],[58.92339328535735,-0.9257180365366112]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -2604,7 +2604,7 @@
             },
         });
         bounds_group.addLayer(layer_FEBRUARY2024_14);
-        function pop_MARCH2023_15(feature, layer) {
+        function pop_MARCH2024_15(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -2635,11 +2635,11 @@
             popup.setContent(updatedContent);
         }
 
-        function style_MARCH2023_15_0(feature) {
+        function style_MARCH2024_15_0(feature) {
             switch(String(feature.properties['SPECIES'])) {
                 case 'BND':
                     return {
-                pane: 'pane_MARCH2023_15',
+                pane: 'pane_MARCH2024_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
@@ -2655,7 +2655,7 @@
                     break;
                 case 'CD':
                     return {
-                pane: 'pane_MARCH2023_15',
+                pane: 'pane_MARCH2024_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -2671,7 +2671,7 @@
                     break;
                 case 'HP':
                     return {
-                pane: 'pane_MARCH2023_15',
+                pane: 'pane_MARCH2024_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(50,87,128,1.0)',
@@ -2687,7 +2687,7 @@
                     break;
                 case 'HW':
                     return {
-                pane: 'pane_MARCH2023_15',
+                pane: 'pane_MARCH2024_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -2703,7 +2703,7 @@
                     break;
                 case 'MW':
                     return {
-                pane: 'pane_MARCH2023_15',
+                pane: 'pane_MARCH2024_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(128,17,25,1.0)',
@@ -2719,7 +2719,7 @@
                     break;
                 case 'RD':
                     return {
-                pane: 'pane_MARCH2023_15',
+                pane: 'pane_MARCH2024_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
@@ -2735,7 +2735,7 @@
                     break;
                 case 'KW':
                     return {
-                pane: 'pane_MARCH2023_15',
+                pane: 'pane_MARCH2024_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
@@ -2751,7 +2751,7 @@
                     break;
                 case 'UIDD':
                     return {
-                pane: 'pane_MARCH2023_15',
+                pane: 'pane_MARCH2024_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(83,83,83,1.0)',
@@ -2767,29 +2767,29 @@
                     break;
             }
         }
-        map.createPane('pane_MARCH2023_15');
-        map.getPane('pane_MARCH2023_15').style.zIndex = 415;
-        map.getPane('pane_MARCH2023_15').style['mix-blend-mode'] = 'normal';
-        var layer_MARCH2023_15 = new L.geoJson(json_MARCH2023_15, {
+        map.createPane('pane_MARCH2024_15');
+        map.getPane('pane_MARCH2024_15').style.zIndex = 415;
+        map.getPane('pane_MARCH2024_15').style['mix-blend-mode'] = 'normal';
+        var layer_MARCH2024_15 = new L.geoJson(json_MARCH2024_15, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_MARCH2023_15',
-            layerName: 'layer_MARCH2023_15',
-            pane: 'pane_MARCH2023_15',
-            onEachFeature: pop_MARCH2023_15,
+            dataVar: 'json_MARCH2024_15',
+            layerName: 'layer_MARCH2024_15',
+            pane: 'pane_MARCH2024_15',
+            onEachFeature: pop_MARCH2024_15,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_MARCH2023_15_0(feature));
+                return L.circleMarker(latlng, style_MARCH2024_15_0(feature));
             },
         });
-        bounds_group.addLayer(layer_MARCH2023_15);
-        map.addLayer(layer_MARCH2023_15);
+        bounds_group.addLayer(layer_MARCH2024_15);
+        map.addLayer(layer_MARCH2024_15);
         var baseMaps = {};
         var overlaysTree = [
-            {label: 'MARCH 2023<br /><table><tr><td style="text-align: center;"><img src="legend/MARCH2023_15_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_15_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_15_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_15_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_15_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_15_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_15_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2023_15_UNIDENTIFIEDDOLPHINSPP7.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>', layer: layer_MARCH2023_15},
+            {label: 'MARCH 2024<br /><table><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_UNIDENTIFIEDDOLPHINSPP7.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>', layer: layer_MARCH2024_15},
             {label: 'FEBRUARY 2024<br /><table><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr></table>', layer: layer_FEBRUARY2024_14},
             {label: 'JANUARY 2024<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_RISSOSDOLPHIN4.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_KILLERWHALE5.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_UNIDENTIFIEDDOLPHINSPP6.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>', layer: layer_JANUARY2024_13},
             {label: 'DECEMBER 2023<br /><table><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2023_12_KILLERWHALE4.png" /></td><td>KILLER WHALE</td></tr></table>', layer: layer_DECEMBER2023_12},
