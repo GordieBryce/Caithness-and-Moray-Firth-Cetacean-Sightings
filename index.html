@@ -57,6 +57,7 @@
         <script src="data/JANUARY2024_13.js"></script>
         <script src="data/FEBRUARY2024_14.js"></script>
         <script src="data/MARCH2024_15.js"></script>
+        <script src="data/APRIL2024_16.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -65,7 +66,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[56.44191200864709,-9.473756279614921],[58.92339328535735,-0.9257180365366112]]);
+        }).fitBounds([[57.68911456024247,-2.0193515982728707],[57.71830972319091,-1.9187707919315886]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -2786,9 +2787,320 @@
             },
         });
         bounds_group.addLayer(layer_MARCH2024_15);
-        map.addLayer(layer_MARCH2024_15);
+        function pop_APRIL2024_16(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
+        }
+
+        function style_APRIL2024_16_0(feature) {
+            switch(String(feature.properties['SPECIES'])) {
+                case 'BND':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(9,9,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CD':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,224,44,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HP':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(22,222,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,94,177,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'MW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'RD':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'KW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '10.0,2.0',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'FW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,113,72,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,72,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'WBD':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(117,58,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,255,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'NBW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(91,38,48,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'UIDW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(83,83,83,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'UIDD':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(83,83,83,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,203,203,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BS':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,128,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SBW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(1,242,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(102,0,88,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SW':
+                    return {
+                pane: 'pane_APRIL2024_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(128,67,36,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,255,158,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_APRIL2024_16');
+        map.getPane('pane_APRIL2024_16').style.zIndex = 416;
+        map.getPane('pane_APRIL2024_16').style['mix-blend-mode'] = 'normal';
+        var layer_APRIL2024_16 = new L.geoJson(json_APRIL2024_16, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_APRIL2024_16',
+            layerName: 'layer_APRIL2024_16',
+            pane: 'pane_APRIL2024_16',
+            onEachFeature: pop_APRIL2024_16,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_APRIL2024_16_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_APRIL2024_16);
+        map.addLayer(layer_APRIL2024_16);
         var baseMaps = {};
         var overlaysTree = [
+            {label: 'APRIL 2024<br /><table><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_FINWHALE7.png" /></td><td>FIN WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_LONGFINNEDPILOTWHALE8.png" /></td><td>LONG-FINNED PILOT WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_WHITEBEAKEDDOLPHIN9.png" /></td><td>WHITE-BEAKED DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_NORTHERNBOTTLENOSEWHALE10.png" /></td><td>NORTHERN BOTTLENOSE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_UNIDENTIFIEDWHALESPP11.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_UNIDENTIFIEDDOLPHINSPP12.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_BASKINGSHARK13.png" /></td><td>BASKING SHARK</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_SOWERBYSBEAKEDWHALE14.png" /></td><td>SOWERBY\'S BEAKED WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/APRIL2024_16_SEIWHALE15.png" /></td><td>SEI WHALE</td></tr></table>', layer: layer_APRIL2024_16},
             {label: 'MARCH 2024<br /><table><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/MARCH2024_15_UNIDENTIFIEDDOLPHINSPP7.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>', layer: layer_MARCH2024_15},
             {label: 'FEBRUARY 2024<br /><table><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/FEBRUARY2024_14_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr></table>', layer: layer_FEBRUARY2024_14},
             {label: 'JANUARY 2024<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_RISSOSDOLPHIN4.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_KILLERWHALE5.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2024_13_UNIDENTIFIEDDOLPHINSPP6.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>', layer: layer_JANUARY2024_13},
@@ -2947,6 +3259,8 @@
             SPECIES_options_str  += '<option value="MW">MW</option>';
             SPECIES_options_str  += '<option value="NBW">NBW</option>';
             SPECIES_options_str  += '<option value="RD">RD</option>';
+            SPECIES_options_str  += '<option value="SBW">SBW</option>';
+            SPECIES_options_str  += '<option value="SW">SW</option>';
             SPECIES_options_str  += '<option value="UIDD">UIDD</option>';
             SPECIES_options_str  += '<option value="UIDW">UIDW</option>';
             SPECIES_options_str  += '<option value="WBD">WBD</option>';
