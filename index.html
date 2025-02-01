@@ -68,6 +68,7 @@
         <script src="data/OCTOBER2024_23.js"></script>
         <script src="data/NOVEMBER2024_24.js"></script>
         <script src="data/DECEMBER2024_25.js"></script>
+        <script src="data/JANUARY2025_26.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -76,7 +77,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[57.13103888134612,-5.671233106476293],[58.44813897438334,-0.586577414490117]]);
+        }).fitBounds([[58.17708762748903,-3.486720338729211],[58.306007198538616,-2.9827670865761338]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -4612,7 +4613,6 @@
             },
         });
         bounds_group.addLayer(layer_OCTOBER2024_23);
-        map.addLayer(layer_OCTOBER2024_23);
         function pop_NOVEMBER2024_24(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -4811,7 +4811,6 @@
             },
         });
         bounds_group.addLayer(layer_NOVEMBER2024_24);
-        map.addLayer(layer_NOVEMBER2024_24);
         function pop_DECEMBER2024_25(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -4962,9 +4961,160 @@
             },
         });
         bounds_group.addLayer(layer_DECEMBER2024_25);
-        map.addLayer(layer_DECEMBER2024_25);
+        function pop_JANUARY2025_26(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE'] !== null ? autolinker.link(feature.properties['DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SPECIES'] !== null ? autolinker.link(feature.properties['SPECIES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_JANUARY2025_26_0(feature) {
+            switch(String(feature.properties['SPECIES'])) {
+                case 'BND':
+                    return {
+                pane: 'pane_JANUARY2025_26',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(9,9,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CD':
+                    return {
+                pane: 'pane_JANUARY2025_26',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,224,44,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HP':
+                    return {
+                pane: 'pane_JANUARY2025_26',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(22,222,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'RD':
+                    return {
+                pane: 'pane_JANUARY2025_26',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'KW':
+                    return {
+                pane: 'pane_JANUARY2025_26',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '10.0,2.0',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'UIDW':
+                    return {
+                pane: 'pane_JANUARY2025_26',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(83,83,83,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_JANUARY2025_26');
+        map.getPane('pane_JANUARY2025_26').style.zIndex = 426;
+        map.getPane('pane_JANUARY2025_26').style['mix-blend-mode'] = 'normal';
+        var layer_JANUARY2025_26 = new L.geoJson(json_JANUARY2025_26, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_JANUARY2025_26',
+            layerName: 'layer_JANUARY2025_26',
+            pane: 'pane_JANUARY2025_26',
+            onEachFeature: pop_JANUARY2025_26,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_JANUARY2025_26_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_JANUARY2025_26);
+        map.addLayer(layer_JANUARY2025_26);
         var baseMaps = {};
         var overlaysTree = [
+            {label: 'JANUARY 2025<br /><table><tr><td style="text-align: center;"><img src="legend/JANUARY2025_26_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2025_26_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2025_26_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2025_26_RISSOSDOLPHIN3.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2025_26_KILLERWHALE4.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/JANUARY2025_26_UNIDENTIFIEDWHALESPP5.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr></table>', layer: layer_JANUARY2025_26},
             {label: 'DECEMBER 2024<br /><table><tr><td style="text-align: center;"><img src="legend/DECEMBER2024_25_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2024_25_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2024_25_MINKEWHALE2.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2024_25_RISSOSDOLPHIN3.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2024_25_KILLERWHALE4.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/DECEMBER2024_25_UNIDENTIFIEDDOLPHINSPP5.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>', layer: layer_DECEMBER2024_25},
             {label: 'NOVEMBER 2024<br /><table><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/NOVEMBER2024_24_UNIDENTIFIEDDOLPHINSPP8.png" /></td><td>UNIDENTIFIED DOLPHIN SPP.</td></tr></table>', layer: layer_NOVEMBER2024_24},
             {label: 'OCTOBER 2024<br /><table><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_BOTTLENOSEDOLPHIN0.png" /></td><td>BOTTLENOSE DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_COMMONDOLPHIN1.png" /></td><td>COMMON DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_HARBOURPORPOISE2.png" /></td><td>HARBOUR PORPOISE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_HUMPBACKWHALE3.png" /></td><td>HUMPBACK WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_MINKEWHALE4.png" /></td><td>MINKE WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_RISSOSDOLPHIN5.png" /></td><td>RISSO\'S DOLPHIN</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_KILLERWHALE6.png" /></td><td>KILLER WHALE</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_UNIDENTIFIEDWHALESPP7.png" /></td><td>UNIDENTIFIED WHALE SPP.</td></tr><tr><td style="text-align: center;"><img src="legend/OCTOBER2024_23_BASKINGSHARK8.png" /></td><td>BASKING SHARK</td></tr></table>', layer: layer_OCTOBER2024_23},
